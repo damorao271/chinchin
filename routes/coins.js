@@ -6,35 +6,80 @@ const _ = require("lodash");
 
 let otraURl = "https://e-commerce-mern-power.herokuapp.com/products";
 let postURL = "https://chichin-app.herokuapp.com/coins";
-
+const localCoins = "http://localhost:3900/local";
+const euroURL = "https://api.exchangeratesapi.io/latest";
 const apiEndPoint =
   "https://www.binance.com/exchange-api/v1/public/asset-service/product/get-products/";
 
+async function getData(url) {
+  try {
+    const { data } = await axios.get(url);
+    return data;
+  } catch (error) {
+    return error;
+  }
+}
+
 router.get("/", async (req, res) => {
-  let { data } = await axios.get(apiEndPoint);
-  const datos = data.data;
-  let ETH = await _.filter(datos, { s: "ETHBTC" });
-  let DASH = await _.filter(datos, { s: "DASHBTC" });
-  let USDT = await _.filter(datos, { s: "BTCUSDT" });
+  let criptos = await getData(apiEndPoint);
+  let euros = await getData(euroURL);
+  euros = euros.rates.USD;
+  let monedasLocales = await getData(localCoins);
+
+  criptos = criptos.data;
+
+  let ETH = await _.filter(criptos, { s: "ETHBTC" });
+  let DASH = await _.filter(criptos, { s: "DASHBTC" });
+  let USDT = await _.filter(criptos, { s: "BTCUSDT" });
 
   const coin = await Coin.find().sort("name");
 
-  console.log("Data ETH", data);
+  const newBTC = {
+    an: USDT[0].an,
+    name: USDT[0].b,
+    valueBTC: 1,
+    valueUSD: USDT[0].c,
+  };
 
+  const newUSD = {
+    an: "Dollar",
+    name: "USD",
+    valueBTC: 1 / newBTC.valueUSD,
+    valueUSD: 1,
+  };
+
+  const newEuro = {
+    an: "Euros",
+    name: "EUR",
+    valueBTC: euros / newBTC.valueUSD,
+    valueUSD: euros,
+  };
   const newETH = {
-    name: ETH[0].an,
+    an: ETH[0].an,
+    name: ETH[0].b,
     valueBTC: ETH[0].c,
+    valueUSD: ETH[0].c * USDT[0].c,
   };
 
   const newDASH = {
-    name: DASH[0].an,
+    an: DASH[0].an,
+    name: DASH[0].b,
     valueBTC: DASH[0].c,
+    valueUSD: DASH[0].c * USDT[0].c,
   };
 
-  console.log("Data ETH", newETH);
-  console.log("Data DASH", newDASH);
+  monedasLocales[0].valueBTC = monedasLocales[0].valueUSD / newBTC.valueUSD;
+  monedasLocales[1].valueBTC = monedasLocales[1].valueUSD / newBTC.valueUSD;
 
-  res.send([newETH, newDASH]);
+  res.send([
+    newBTC,
+    newETH,
+    newDASH,
+    monedasLocales[0],
+    monedasLocales[1],
+    newEuro,
+    newUSD,
+  ]);
 });
 
 router.post("/", async (req, res) => {
