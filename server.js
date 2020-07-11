@@ -14,7 +14,7 @@ app.use("/coins", coins);
 const uri = process.env.ATLAS_URL;
 const PORT = process.env.PORT || 3000;
 
-// Connect to ATLAS
+// Connect to MDB ATLAS
 
 mongoose
   .connect(uri, {
