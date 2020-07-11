@@ -7,7 +7,7 @@ const cors = require("cors");
 
 const coins = require("./routes/coins");
 
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
 app.use("/coins", coins);
 
@@ -15,6 +15,7 @@ const uri = process.env.ATLAS_URL;
 const PORT = process.env.PORT || 3000;
 
 // Connect to MDB ATLAS
+console.log(uri);
 
 mongoose
   .connect(uri, {
