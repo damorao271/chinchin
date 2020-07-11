@@ -1,0 +1,24 @@
+{
+s: "BTCUSDT", // Mercado BTC a USDT
+st: "TRADING",
+b: "BTC",     //Desde 
+q: "USDT",    //Hasta
+ba: "฿",
+qa: "",
+i: 0.000001,
+ts: 0.01,
+an: "Bitcoin",  //Nombre desde
+qn: "TetherUS", // NOmbre hasta
+o: 9229,    
+h: 9317.48,
+l: 9178.25,
+c: 9245.38,   // Valor 
+v: 26718.48,
+qv: 246922892.6594303,
+y: 0,
+as: 26718.479325,
+pm: "USDⓈ",
+pn: "USDⓈ",
+cs: 18429437,
+etf: false
+},
