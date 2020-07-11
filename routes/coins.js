@@ -34,7 +34,7 @@ router.get("/", async (req, res) => {
   console.log("Data ETH", newETH);
   console.log("Data DASH", newDASH);
 
-  res.send(coin);
+  res.send([newETH, newDASH]);
 });
 
 router.post("/", async (req, res) => {

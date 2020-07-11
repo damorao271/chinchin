@@ -7,7 +7,7 @@ const cors = require("cors");
 
 const coins = require("./routes/coins");
 
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 app.use("/coins", coins);
 
