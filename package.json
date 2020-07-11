@@ -1,6 +1,9 @@
 {
   "name": "chinchin",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.16.3"
+  },
   "description": "REST API para el mercado de criptomonedas",
   "main": "index.js",
   "scripts": {
