@@ -1,5 +1,5 @@
-# chinchin
-REST API para el mercado de criptomonedas
+# Chinchin
+REST API para el mercado de criptomonedas 
 
 A continuacion se presentan las rutas de la API de la prueba 
 
