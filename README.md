@@ -3,7 +3,7 @@ REST API para el mercado de criptomonedas
 
 A continuacion se presentan las rutas de la API de la prueba 
 
-https://chichin-api.herokuapp.com/transform/**<Moneda>**/**<cantidad>** ## Transforma una cantida de una moneda al resto
+https://chichin-api.herokuapp.com/transform/**Moneda**/**cantidad** ## Transforma una cantida de una moneda al resto
 
 
 https://chichin-api.herokuapp.com/coins  ## Para conseguir el valor de las monedas en USD
