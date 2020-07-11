@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 const _ = require("lodash");
 
-const coinsURL = "http://localhost:3900/coins";
+const coinsURL = "https://chichin-api.herokuapp.com/coins";
 
 async function getData(url) {
   try {
