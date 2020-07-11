@@ -3,10 +3,15 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
+const cors = require("cors");
 
-require("./routes")(app);
+const coins = require("./routes/coins");
 
-const uri = process.env.ATLAS_URI;
+app.use(cors());
+app.use(express.json());
+app.use("/coins", coins);
+
+const uri = process.env.ATLAS_URL;
 const PORT = process.env.PORT || 3000;
 
 // Connect to ATLAS
@@ -18,7 +23,7 @@ mongoose
     useCreateIndex: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("Connecte to MongoDB Atlas ..."))
+  .then(() => console.log("Connected to MongoDB Atlas ..."))
   .catch((err) => console.log("Could not connect to MongoDB !!!"));
 
 app.listen(PORT, console.log(`Listening on port ${PORT}`));
