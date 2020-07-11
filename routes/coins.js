@@ -6,7 +6,7 @@ const _ = require("lodash");
 
 let otraURl = "https://e-commerce-mern-power.herokuapp.com/products";
 let postURL = "https://chichin-app.herokuapp.com/coins";
-const localCoins = "http://localhost:3900/local";
+const localCoins = "https://chichin-api.herokuapp.com/local";
 const euroURL = "https://api.exchangeratesapi.io/latest";
 const apiEndPoint =
   "https://www.binance.com/exchange-api/v1/public/asset-service/product/get-products/";
